@@ -28,11 +28,11 @@ public class HibernateApp {
 				
 		Persona persona = new Persona();
 
-		persona.setDni(12345670);
-		persona.setApellido("Sepulveda");
-		persona.setNombre("Lolo");
+		persona.setDni(99999999);
+		persona.setApellido("Galarga");
+		persona.setNombre("Elber");
 		persona.setSexo('M');
-		persona.setCodigo_depto(1);
+		persona.setCodigo_depto(10);
 
 		Transaction tx = session.beginTransaction();
 		try {
@@ -54,11 +54,14 @@ public class HibernateApp {
 			//}			
 			
 			System.out.println("\nSolo DNI de las Personas");
-			
 			Query q = session.getNamedQuery("DniPersonas");
 			List<Integer> listaConDni = q.getResultList();
 			for(Integer i : listaConDni)
 				System.out.println(i);
+			
+			
+			q = session.createQuery("Insert INTO Persona Values (99999999, 'Elber, Galarga', 'M', 10)");
+			
 			
 			System.out.println("\nOtra forma de consultar personas");
 			q = session.createQuery("Select p from Persona p");
